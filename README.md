@@ -6,7 +6,7 @@ https://rubygems.org/gems/jellyfish-notice
 #### Installation
 Include in Gemfile: 
 ```
-  gem 'jellyfish_notice' 
+  gem 'jellyfish-notice' 
 ```
 
 Add settings to your .env file:
@@ -42,7 +42,8 @@ end
 ```
 
 #### Custom Subscriptions
-Jellyfish-notice comes preloaded with subscriptions to pre-defined events.
+Jellyfish-notice comes with subscriptions to certain [pre-defined] (config/initializers/subscriptions.rb) events.
+
 Subscriptions to other instrumented events can be placed in config/initializers/subscriptions.rb:
 ```ruby
 ...
@@ -54,7 +55,7 @@ ActiveSupport::Notifications.subscribe('sessions#create/post_hook') do |*args|
 end
 ...
 ```
-Events are instrumented using the following convention:
+Events are instrumented using the following naming convention:
 ```ruby
 controller_name + '#' + action_name + '/post_hook'
 ```
