@@ -1,6 +1,8 @@
 JellyNotification
 =======
 A notification system for Project Jellyfish.
+
+https://rubygems.org/gems/jellyfish-notice
 #### Installation
 Include in Gemfile: 
 ```
@@ -35,6 +37,7 @@ class SessionsController < Devise::SessionsController
   def post_hook
     ActiveSupport::Notifications.instrument(controller_name + '#' + action_name + '/post_hook')
   end
+  ...
 end
 ```
 
@@ -42,12 +45,14 @@ end
 Jellyfish-notice comes preloaded with subscriptions to pre-defined events.
 Subscriptions to other instrumented events can be placed in config/initializers/subscriptions.rb:
 ```ruby
+...
 ActiveSupport::Notifications.subscribe('sessions#create/pre_hook') do |*args|
   JellyfishNotice.send(*args)
 end
 ActiveSupport::Notifications.subscribe('sessions#create/post_hook') do |*args|
   JellyfishNotice.send(*args)
 end
+...
 ```
 Events are instrumented using the following convention:
 ```ruby
