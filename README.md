@@ -2,13 +2,12 @@ JellyNotification
 =======
 A notification system for Project Jellyfish.
 #### Installation
-Add this line to your Gemfile: 
+Include in Gemfile: 
 ```
-  gem 'jelly_notification' 
+  gem 'jellyfish_notice' 
 ```
-https://rubygems.org/gems/jelly_notification
 
-And add these settings to your .env file:
+Add settings to your .env file:
 ```
   PJ_PERFORM_DELIVERIES        = true
   PJ_DELIVERY_METHOD           = smtp
@@ -22,8 +21,8 @@ And add these settings to your .env file:
   PJ_SMTP_DEFAULT_SENDER       = to_whom@bar.com
 ```
 
-Add before_commit and after_commit hooks to controllers with private instrument methods:
-```
+Make sure that ```before_commit``` and ```after_commit``` hooks are defined on controllers:
+```ruby
 class SessionsController < Devise::SessionsController
   before_action :pre_hook
   after_action :post_hook
@@ -39,12 +38,18 @@ class SessionsController < Devise::SessionsController
 end
 ```
 
-Then add subscribers to those events under config/initializers/subscriptions.rb:
-```
+#### Custom Subscriptions
+Jellyfish-notice comes preloaded with subscriptions to pre-defined events.
+Subscriptions to other instrumented events can be placed in config/initializers/subscriptions.rb:
+```ruby
 ActiveSupport::Notifications.subscribe('sessions#create/pre_hook') do |*args|
-  JellyNotification.send(*args)
+  JellyfishNotice.send(*args)
 end
 ActiveSupport::Notifications.subscribe('sessions#create/post_hook') do |*args|
-  JellyNotification.send(*args)
+  JellyfishNotice.send(*args)
 end
+```
+Events are instrumented using the following convention:
+```ruby
+controller_name + '#' + action_name + '/post_hook'
 ```
