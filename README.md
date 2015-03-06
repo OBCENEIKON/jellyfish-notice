@@ -1,6 +1,6 @@
-JellyNotification
+Jellyfish Notice
 =======
-A notification system for Project Jellyfish.
+A notification system for [Project Jellyfish] (https://github.com/projectjellyfish/api).
 
 https://rubygems.org/gems/jellyfish-notice
 #### Installation
@@ -42,9 +42,9 @@ end
 ```
 
 #### Custom Subscriptions
-Jellyfish-notice comes with subscriptions to certain [pre-defined] (config/initializers/subscriptions.rb) events.
+Jellyfish Notice comes with subscriptions to certain [pre-defined] (config/initializers/subscriptions.rb) events.
 
-Subscriptions to other instrumented events can be placed in config/initializers/subscriptions.rb:
+Subscriptions to other events can be placed in config/initializers/subscriptions.rb:
 ```ruby
 ...
 ActiveSupport::Notifications.subscribe('sessions#create/pre_hook') do |*args|
