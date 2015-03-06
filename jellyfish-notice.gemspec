@@ -1,4 +1,4 @@
-$:.push File.expand_path('../lib', __FILE__)
+$LOAD_PATH.push File.expand_path('../lib', __FILE__)
 
 # Maintain your gem's version:
 require 'jellyfish_notice/version'
@@ -16,4 +16,6 @@ Gem::Specification.new do |s|
   s.files = Dir['{app,config,db,lib}/**/*', 'LICENSE', 'Rakefile', 'README.md']
   s.add_dependency 'rails'
   s.add_dependency 'dotenv-rails'
+  s.add_dependency 'rspec-rails'
+  s.add_dependency 'rubocop'
 end

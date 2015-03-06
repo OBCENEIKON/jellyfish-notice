@@ -15,5 +15,3 @@ end
 ActiveSupport::Notifications.subscribe('sessions#destroy/post_hook') do |*args|
   JellyfishNotice.send(*args)
 end
-
-
