@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    jellyfish-notice (0.0.1)
+    jellyfish-notice (0.0.3)
       dotenv-rails
       rails
       rspec-rails
